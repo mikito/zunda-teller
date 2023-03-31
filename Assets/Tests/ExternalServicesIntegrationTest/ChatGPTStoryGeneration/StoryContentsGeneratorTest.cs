@@ -27,4 +27,23 @@ namespace ZundaTeller.Test.ExternalServiceIntegrationTest
             Assert.That(count, Is.LessThanOrEqualTo(preferred + (preferred / 2)));
         });
     }
+
+    public class StepByStepStoryContentsGeneratorTest
+    {
+        [UnityTest]
+        public IEnumerator Generate10ContentsStoryAsStream() => UniTask.ToCoroutine(async () =>
+        {
+            int preferred = 10;
+            var service = new OpenAIChatCompletionService(Env.Get("OPEN_AI_API_KEY"));
+            var generator = new StepByStepStoryContentsGenerator(service);
+            int count = 0;
+            await foreach (var s in generator.GenerateAsyncEnumerable("ある日森の中、アライグマさんに出会った", preferred, default(CancellationToken)))
+            {
+                Debug.Log(s.emotion + " : " + s.content);
+                count++;
+            }
+            Assert.That(count, Is.EqualTo(preferred));
+        });
+
+    }
 }

@@ -10,7 +10,7 @@ namespace ZundaTeller
 {
     public class PlayableStoryGeneration : IDisposable
     {
-        const int PreferredLength = 16;
+        const int PreferredLength = 10;
 
         public Queue<PlayableStorySentence> SentenceQueue => sentences;
         public bool IsCompleted { get; private set; }
@@ -19,10 +19,10 @@ namespace ZundaTeller
         Queue<PlayableStorySentence> sentences = new Queue<PlayableStorySentence>();
         CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
-        StoryContentsGenerator storyGenerator = null;
+        IStoryContentsGenerator storyGenerator = null;
         IVoiceCreationService voiceCreationService = null;
 
-        public PlayableStoryGeneration(StoryContentsGenerator storyGenerator, IVoiceCreationService voiceCreation, string title)
+        public PlayableStoryGeneration(IStoryContentsGenerator storyGenerator, IVoiceCreationService voiceCreation, string title)
         {
             this.voiceCreationService = voiceCreation;
             this.storyGenerator = storyGenerator;

@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace ZundaTeller.AIGeneration
 {
-    public class StoryContentsGenerator
+    public class StoryContentsGenerator : IStoryContentsGenerator
     {
         const string SystemPrompt = @"あなたは子供向けの物語のプロ作家です。楽しく教育的な物語を作る作業をアシストしてください。";
 

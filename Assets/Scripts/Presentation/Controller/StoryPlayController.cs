@@ -15,7 +15,7 @@ namespace ZundaTeller.Presentation
             await base.Start();
 
             // バッググラウンドでのストーリーとボイス生成の逐次生成開始
-            var generator = new StoryContentsGenerator(context.ChatCompletionService);
+            var generator = new StepByStepStoryContentsGenerator(context.ChatCompletionService);
             storyGeneration = new PlayableStoryGeneration(generator, context.VoiceCreationService, ReplacedTitle);
             storyGeneration.RunAsync().Forget();
 
