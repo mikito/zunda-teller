@@ -10,6 +10,7 @@ namespace ZundaTeller.ExternalService
 {
     public class VoicevoxWebAPIVoiceCreationService : IVoiceCreationService
     {
+        const int MaxRequestConcurrency = 1;
         [Serializable]
         public struct Error
         {
@@ -28,12 +29,16 @@ namespace ZundaTeller.ExternalService
         }
 
         HttpClient httpClient;
+        SemaphoreSlim semaphore = null;
+        bool isDiposed = false;
+
         string apiKey;
 
         public VoicevoxWebAPIVoiceCreationService(string apiKey)
         {
             httpClient = new HttpClient();
             this.apiKey = apiKey;
+            semaphore = new SemaphoreSlim(MaxRequestConcurrency, MaxRequestConcurrency);
         }
 
         async UniTask<Stream> SynthesisAsync(string text, CancellationToken cancellationToken = default)
@@ -49,6 +54,7 @@ namespace ZundaTeller.ExternalService
             request.Content = new FormUrlEncodedContent(parameters);
             HttpResponseMessage response = null;
 
+            await semaphore.WaitAsync(cancellationToken);
             try
             {
                 response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
@@ -81,6 +87,10 @@ namespace ZundaTeller.ExternalService
                 response?.Dispose();
                 throw new VoiceCreationException(VoiceCreationErrorCode.Unknown, e);
             }
+            finally
+            {
+                if (!isDiposed) semaphore.Release();
+            }
         }
 
         public async UniTask<VoiceData> CreateVoiceAsync(string text, CancellationToken cancellationToken = default)
@@ -102,7 +112,11 @@ namespace ZundaTeller.ExternalService
 
         public void Dispose()
         {
+            if (isDiposed) return;
+
             httpClient.Dispose();
+            semaphore.Dispose();
+            isDiposed = true;
         }
 
         public async UniTask<TestResult> TestAsync(CancellationToken cancellationToken)
