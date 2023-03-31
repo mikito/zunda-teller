@@ -20,7 +20,7 @@ namespace ZundaTeller.AIGeneration
 {emotion}: {content}
 
 ## 出力フォーマットの詳細
-- {content}は物語の内容を表す50文字以下の文章です
+- {content}は物語の文章です
 - {emotion}は{content}の感情を表す数字で、以下のEmotion Numberから選択します
 
 ### Emotion Number
@@ -31,7 +31,8 @@ namespace ZundaTeller.AIGeneration
 4 -> 怒り
 
 ## 制約事項
-- {PREFERRED_LENGTH}行程度の物語にすること
+- {PREFERRED_LENGTH}行以上の物語にすること
+- 1行は50文字以内にすること
 - 文章の語尾は「です、ます」口調にすること
 - フォーマット以外の会話文、コメント、補足などの情報は一切返答しないこと
 
