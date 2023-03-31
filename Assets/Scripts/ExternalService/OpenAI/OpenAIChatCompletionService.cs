@@ -69,7 +69,7 @@ namespace ZundaTeller.ExternalService
                 }
             }
 
-            if (string.IsNullOrEmpty(buffer)) yield return buffer;
+            if (!string.IsNullOrEmpty(buffer)) yield return buffer;
         }
 
         bool FetchLine(ref string stringBuffer, out string line)
