@@ -28,6 +28,7 @@ namespace ZundaTeller.ExternalService
                 var message = response.choices[0].message;
                 return new ChatCompletionServiceMessage() { role = ConvertToServiceRole(message.role), content = message.content };
             }
+            catch (OperationCanceledException) { throw; } 
             catch (Exception e)
             {
                 throw new ChatCompletionException("chat completion failed.", e);
@@ -55,6 +56,7 @@ namespace ZundaTeller.ExternalService
                     var chunk = enumerator.Current;
                     buffer += chunk.choices[0].delta.content;
                 }
+                catch (OperationCanceledException) { throw; } 
                 catch (Exception e)
                 {
                     throw new ChatCompletionException("chat completion failed.", e);

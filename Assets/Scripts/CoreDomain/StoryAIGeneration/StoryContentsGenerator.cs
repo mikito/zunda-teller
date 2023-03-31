@@ -82,6 +82,7 @@ namespace ZundaTeller.AIGeneration
                 {
                     if (!await enumerator.MoveNextAsync()) break;
                 }
+                catch (OperationCanceledException) { throw; }
                 catch (Exception e)
                 {
                     throw new AIGenerationException("StoryContentsGenerator: Failed to complete line.", e);

@@ -52,6 +52,7 @@ namespace ZundaTeller.AIGeneration
 
                 return JsonConvert.DeserializeObject<List<StoryTitle>>(completion.content);
             }
+            catch (OperationCanceledException) { throw; }
             catch (Exception e)
             {
                 throw new AIGenerationException("StoryTitleGenerator: Failed to generate titles. ", e);
