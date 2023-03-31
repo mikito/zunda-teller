@@ -1,0 +1,7 @@
+■ Story Generation powered by OpenAI ChatGPT API (gpt-3.5-turbo)
+- https://beta.openai.com/docs/models/gpt-3
+
+■ Voice Runtime Generation powered by VOICEVOX
+- https://voicevox.hiroshiba.jp/
+- WEB版VOICEVOX
+  - https://voicevox.su-shiki.com/
