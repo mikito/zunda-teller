@@ -29,7 +29,8 @@ namespace ZundaTeller.ExternalService
         }
 
         HttpClient httpClient;
-        SemaphoreSlim semaphore = null;
+        SemaphoreSlim semaphore;
+        DateTime lastRequestTime;
         bool isDiposed = false;
 
         string apiKey;
@@ -55,9 +56,14 @@ namespace ZundaTeller.ExternalService
             HttpResponseMessage response = null;
 
             await semaphore.WaitAsync(cancellationToken);
+
+            var span = DateTime.Now - lastRequestTime;
+            if (span.TotalSeconds < 1 && span.TotalSeconds > 0) await UniTask.Delay(span, cancellationToken: cancellationToken);
+
             try
             {
                 response = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
+                lastRequestTime = DateTime.Now; // 受信が完了しきった時間は不明
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -70,14 +76,16 @@ namespace ZundaTeller.ExternalService
                     var message = await response.Content.ReadAsStringAsync();
                     cancellationToken.ThrowIfCancellationRequested();
 
-                    // 空の場合がたまにある
-                    if (string.IsNullOrEmpty(message))
+                    try
                     {
-                        var errorMessage = $"voicevox web api error. status : {response.StatusCode}";
+                        var error = JsonUtility.FromJson<Error>(message);
+                        throw new VoiceCreationException(error.ToErrorCode());
+                    }
+                    catch
+                    {
+                        var errorMessage = $"voicevox web api error. status: {response.StatusCode}, message: {message}";
                         throw new VoiceCreationException(VoiceCreationErrorCode.Unknown, errorMessage);
                     }
-                    var error = JsonUtility.FromJson<Error>(message);
-                    throw new VoiceCreationException(error.ToErrorCode());
                 }
             }
             catch (OperationCanceledException) { throw; }
