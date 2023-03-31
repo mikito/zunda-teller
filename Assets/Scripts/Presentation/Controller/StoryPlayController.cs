@@ -16,7 +16,7 @@ namespace ZundaTeller.Presentation
 
             // バッググラウンドでのストーリーとボイス生成の逐次生成開始
             var generator = new StoryContentsGenerator(context.ChatCompletionService);
-            storyGeneration = new PlayableStoryGeneration(generator, context.VoiceCreationService, context.SelectedTitle);
+            storyGeneration = new PlayableStoryGeneration(generator, context.VoiceCreationService, ReplacedTitle);
             storyGeneration.RunAsync().Forget();
 
             // 自動スリープを無効にする
@@ -27,11 +27,13 @@ namespace ZundaTeller.Presentation
 
         async UniTask RunAsync()
         {
-            await TitleCallAsync(context.SelectedTitle);
+            await TitleCallAsync(ReplacedTitle);
             await UniTask.WaitUntil(() => storyGeneration.SentenceQueue.Count > 0);
             await PlayContentsAsync();
             OnStoryEnd();
         }
+
+        string ReplacedTitle => System.Text.RegularExpressions.Regex.Replace(context.SelectedTitle, @"\n+", "　");
 
         async UniTask TitleCallAsync(string title)
         {
@@ -50,7 +52,7 @@ namespace ZundaTeller.Presentation
         {
             var contentView = CreateAsMainView<StoryContentView>();
             contentView.OnBackButtonClick = OnBackButtonClick;
-            contentView.Title = context.SelectedTitle;
+            contentView.Title = ReplacedTitle;
 
             await viewContext.Present(contentView);
 
