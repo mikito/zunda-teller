@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &742317390468902802
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 742317390468902812}
+  - component: {fileID: 742317390468902803}
+  m_Layer: 0
+  m_Name: ZundaTeller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &742317390468902812
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742317390468902802}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &742317390468902803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742317390468902802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49fd80336eac486b8da1e1ce49ae623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rootView: {fileID: 0}
+  viewCollection:
+    views:
+    - {fileID: 3670295549694313130, guid: 351e624ebb83e42b3a5c58ae4ab3053b, type: 3}
+    - {fileID: 4552962197333843319, guid: c99403c5217f24592a0947888d99ca67, type: 3}
+    - {fileID: 7107561480861876403, guid: 8911b19a1510642e787246f7381ba100, type: 3}
+    - {fileID: 1594225202694433966, guid: 5fff37cf041f544d794b1b4232bb9ad0, type: 3}
+    - {fileID: 2046675112535847529, guid: 0d908e9b61e1f482fa534cec25903853, type: 3}
+    - {fileID: 2545530230520274474, guid: 23adfd2bc871e48d3815dac194c4ad61, type: 3}
+    - {fileID: 2419278274632131366, guid: 73d8c6008ff4c4b5b8f652e1b6cb6801, type: 3}
+    - {fileID: 436817580646866636, guid: 2ce7ecd5e8eac4fa48426c74360a6464, type: 3}
+    - {fileID: 1363310585089263465, guid: 18fadd2a75acd4fa4b7aaf34a4607c4f, type: 3}
+  voiceCollection:
+    voices:
+    - {fileID: 8300000, guid: 2fb148ef6d79b48a8a4fe1417d94cad1, type: 3}
+    - {fileID: 8300000, guid: 2ada4d4c6e3844b7696fdae3ab51e05d, type: 3}
+    - {fileID: 8300000, guid: fdd0eb2d3b07944ee8ff83c432e10f17, type: 3}
+    - {fileID: 8300000, guid: 89e54b1683051408ca8a6cc00fbfc362, type: 3}
+    - {fileID: 8300000, guid: 1f496d865122c47e8916e21452340429, type: 3}
+    - {fileID: 8300000, guid: f01d88daaa00740a5b2aa49f0088558a, type: 3}
+  zundamonView: {fileID: 0}
