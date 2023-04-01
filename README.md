@@ -5,6 +5,8 @@ Zunda Teller
 
 おはなしの生成に[OpenAI API](https://openai.com/blog/openai-api)、ボイスの生成に[VOICEVOX](https://voicevox.hiroshiba.jp/)を利用しています。
 
+https://user-images.githubusercontent.com/1071168/229266760-d6cafb85-f684-43ae-94fc-8ddb61863250.mov
+
 機能
 -------
 主に2つの遊び方があります。
@@ -13,9 +15,13 @@ Zunda Teller
 ずんだもんがおはなしの候補を複数考えて話してくれるモードです。
 表示されたタイトルから聞きたいおはなしを選びます。
 
+<img src=https://user-images.githubusercontent.com/1071168/229267305-6c869f23-9b25-421c-a3d1-011dc457f272.PNG width=640>
+
 ### 自分でタイトルを考えてみるモード
 自分で考えたタイトルの内容をずんだもんが考えて話してくれるモードです。
 無理難題なタイトルでもずんだもんが頑張ってくれます。
+
+<img src=https://user-images.githubusercontent.com/1071168/229266732-012866d7-4622-4211-b953-cda34b257758.PNG width=640>
 
 インストールとセットアップ
 ------
@@ -23,7 +29,7 @@ Zunda Teller
 ### インストール 
 このリポジトリをCloneしてUnityで開くか、[Release](https://github.com/mikito/zunda-teller/releases)ページからビルド済みのアプリをダウンロードしてください。
 
-現バージョンではユーザー自身に各種サービスとの連携をお願いしており、システムとして完結していないためストア等での配信は行ってません。
+現バージョンではユーザー自身に各種サービスとの連携をお願いしているためストア等での配信は行っていません。
 
 ### セットアップ
 アプリ起動後の設定画面で、OpenAI APIとVOICEVOXとの連携のための設定を行なってください。
