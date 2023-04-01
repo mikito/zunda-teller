@@ -33,7 +33,7 @@ namespace ZundaTeller.Presentation
             OnStoryEnd();
         }
 
-        string ReplacedTitle => System.Text.RegularExpressions.Regex.Replace(context.SelectedTitle, @"\n+", "　");
+        string ReplacedTitle => System.Text.RegularExpressions.Regex.Replace(context.SelectedTitle, @"(\s|[\r\n])+", "\u00A0");
 
         async UniTask TitleCallAsync(string title)
         {
