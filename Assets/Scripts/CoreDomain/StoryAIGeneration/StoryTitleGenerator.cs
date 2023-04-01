@@ -12,7 +12,7 @@ namespace ZundaTeller.AIGeneration
     {
         const string SystemPrompt = @"あなたは子供向けの物語のプロ作家です。楽しく教育的な物語を作る作業をアシストしてください。";
         const string UserPromptTemplete =
-@"面白そうな子供向けのオリジナル物語のタイトルを{NUMBER}個考えてください。
+@"子供向けのオリジナル物語のタイトルを{NUMBER}個考えてください。
 
 ## 制約事項
 - タイトルは15文字以内にすること
